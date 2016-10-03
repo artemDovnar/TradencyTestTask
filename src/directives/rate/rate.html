@@ -1,0 +1,30 @@
+<div class="rate">
+    <table>
+        <thead>
+
+        <td class="cellName" style="color: orange">Instrument name</td>
+        <td>Bid</td>
+        <td>Ask</td>
+
+        </thead>
+        <tbody>
+        <tr ng-repeat="rate in rateInfo.getRates() track by $index">
+            <td data-title="Name" class="cellName">
+                <span ng-bind="rate.name"></span>
+                <button class="changesBtn" ng-click="changeInstrumentName($index)" type="button">Change</button>
+                <button class="changesBtn" ng-click="rateInfo.removeInstrument($index)">x</button>
+            </td>
+            <td data-title="Bid" class="cellBid"
+                ng-class="{'cellGreen': rateInfo.getOld(rate.id).bidValue < rate.bidValue, 'cellRed': rateInfo.getOld(rate.id).bidValue > rate.bidValue, 'cellGray': rateInfo.getOld(rate.id).bidValue == rate.bidValue}"
+                ng-bind="rate.bidValue"></td>
+            <td data-title="Ask" class="cellAsk"
+                ng-class="{'cellGreen': rateInfo.getOld(rate.id).askValue < rate.askValue, 'cellRed': rateInfo.getOld(rate.id).askValue > rate.askValue, 'cellGray': rateInfo.getOld(rate.id).askValue == rate.askValue}"
+                ng-bind="rate.askValue"></td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
