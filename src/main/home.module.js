@@ -26,6 +26,18 @@ function homeRoutes($stateProvider, $urlRouterProvider) {
 
 }
 
+
+function configRun($rootScope, LoginData, $state) {
+    $rootScope.$on('$stateChangeStart',
+        function (event, toState, toParams, fromState, fromParams) {
+            if (!LoginData.loggedIn && toState.name !== 'home.login') {
+                event.preventDefault();
+                $state.go('home.login');
+            }
+        })
+}
+
+
 export default angular.module('meetUpPlaner', [
     Services.name,
     Models.name,
@@ -36,5 +48,6 @@ export default angular.module('meetUpPlaner', [
 ])
     .controller('HomeController', HomeController)
     .config(homeRoutes)
+    .run(configRun)
 
 

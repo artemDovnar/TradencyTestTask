@@ -1,7 +1,8 @@
 import {Rate} from './rate'
 
 export class RateInfo {
-    constructor($interval) {
+    constructor($interval, $log) {
+        this.$log = $log;
         var that = this;
         this.numberOfRates = 30;
         this.ids = this.generateIds(this.numberOfRates);
@@ -82,7 +83,7 @@ export class RateInfo {
             return rate.getBidValue();
         }));
 
-        console.log("max: " + Math.max(maxAsk, maxBid));
+        this.$log.info("max: " + Math.max(maxAsk, maxBid));
     }
 
 }

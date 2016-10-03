@@ -1,25 +1,31 @@
+<ng-form name="formLogin">
 <div class="login">
     <div class="login-header">
         <h3>Login to Trade App</h3>
     </div>
     <div class="login-form">
         <h3>Username:</h3>
-        <input type="text" placeholder="Username" ng-model="loginForm.username"/><br>
+        <input type="text" name="username" placeholder="Username" ng-model="loginForm.username" ng-required="true"><br>
+        <span style="color:red;" ng-show="formLogin.username.$invalid && formLogin.username.$touched">Username is required</span>
 
         <h3>Password:</h3>
-        <input type="password" placeholder="Password" ng-model="loginForm.password"/>
+        <input type="text" name="password" placeholder="Password" ng-model="loginForm.password" ng-required="true">
+        <span style="color:red;" ng-show="formLogin.password.$invalid && formLogin.password.$touched">Password is required</span>
 
         <h3>Country:</h3>
         <input type="text" ng-disabled="true" ng-model="loginForm.country"/>
 
         <h3>Phone:</h3>
-        <input type="text" placeholder="Phone" ng-model="loginForm.phone"/>
+        <input type="text" name="phone" pattern="{{phonePattern}}"  placeholder="Phone" ng-model="loginForm.phone" ng-required="true">
+        <span style="color:red;" ng-show="formLogin.phone.$invalid && formLogin.phone.$touched">Phone is required</span>
 
         <h3></h3>
-        <input type="button" ng-click="login()" value="Login" class="login-button"/>
+        <input class="login-button" type="button" ng-model="isLogin" ng-keyup="alert('15')" ng-click="login()" ng-disabled="formLogin.$invalid" value="Login"/>
         <br>
     </div>
 </div>
+</ng-form>
+
 
 
 
