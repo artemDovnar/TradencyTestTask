@@ -23,10 +23,13 @@ export class LoginController {
                     this.LoginData.country = response.results[0].address_components[4].long_name
                 })
                 $scope.login = ()=> {
-                    this.LoginData.loggedIn = true;
-                    $log.info(this.LoginData);
-                    $state.go('trading');
-                    $scope.closeThisDialog();
+                    if ($scope.userForm.$valid){
+                        this.LoginData.loggedIn = true;
+                        $log.info(this.LoginData);
+                        $state.go('trading');
+                        $scope.closeThisDialog();
+                    }
+
                 }
             }
 

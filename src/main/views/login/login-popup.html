@@ -1,32 +1,59 @@
-<ng-form name="formLogin">
-<div class="login">
-    <div class="login-header">
-        <h3>Login to Trade App</h3>
+<form name="userForm" ng-submit="login()" validate>
+    <div class="login-header">Login to Trading App</div>
+    <!-- Username -->
+    <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && userForm.username.$pristine }">
+        <label>Username</label>
+        <input type="text" name="username" class="form-control" ng-model="loginForm.username" ng-minlength="2"
+               ng-maxlength="30" ng-required="true">
+
+        <div role="alert" ng-show="userForm.username.$invalid" class="danger">
+            <span class="label label-danger" ng-show="userForm.username.$error.required">Username is required</span>
+        </div>
+        <div role="alert" ng-show="userForm.username.$error.minlength" class="danger">
+            <span class="label label-danger" ng-show="userForm.username.$error.minlength">Username is too short</span>
+        </div>
+        <div role="alert" ng-show="userForm.username.$error.maxlength" class="danger">
+            <span class="label label-danger" ng-show="userForm.username.$error.maxlength">Username is too long</span>
+        </div>
     </div>
-    <div class="login-form">
-        <h3>Username:</h3>
-        <input type="text" name="username" placeholder="Username" ng-model="loginForm.username" ng-required="true"><br>
-        <span style="color:red;" ng-show="formLogin.username.$invalid && formLogin.username.$touched">Username is required</span>
 
-        <h3>Password:</h3>
-        <input type="text" name="password" placeholder="Password" ng-model="loginForm.password" ng-required="true">
-        <span style="color:red;" ng-show="formLogin.password.$invalid && formLogin.password.$touched">Password is required</span>
+    <!-- Password -->
+    <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
+        <label>Password</label>
+        <input type="text" name="password" class="form-control" ng-model="loginForm.password" ng-minlength="6"
+               ng-maxlength="25" ng-required="true">
 
-        <h3>Country:</h3>
-        <input type="text" ng-disabled="true" ng-model="loginForm.country"/>
-
-        <h3>Phone:</h3>
-        <input type="text" name="phone" pattern="{{phonePattern}}"  placeholder="Phone" ng-model="loginForm.phone" ng-required="true">
-        <span style="color:red;" ng-show="formLogin.phone.$invalid && formLogin.phone.$touched">Phone is required</span>
-
-        <h3></h3>
-        <input class="login-button" type="button" ng-click="login()" ng-disabled="formLogin.$invalid" value="Login"/>
-        <br>
+        <div role="alert" ng-show="userForm.password.$error" class="danger">
+            <span class="label label-danger" ng-show="userForm.password.$error.required">Password is required</span>
+        </div>
+        <div role="alert" ng-show="userForm.password.$error.minlength" class="danger">
+            <span class="label label-danger" ng-show="userForm.password.$error.minlength">Password is too short</span>
+        </div>
+        <div role="alert" ng-show="userForm.password.$error.maxlength" class="danger">
+            <span class="label label-danger" ng-show="userForm.password.$error.maxlength">Password is too long</span>
+        </div>
     </div>
-</div>
-</ng-form>
 
+    <!-- Country -->
+    <div class="form-group">
+        <label>Country</label>
+        <input type="text" name="country" class="form-control" ng-model="loginForm.country" ng-disabled="true">
+    </div>
 
+    <!-- Phone -->
+    <div class="form-group" ng-class="{ 'has-error' : userForm.phone.$invalid && !userForm.phone.$pristine }">
+        <label>Phone</label>
+        <input type="text" name="phone" pattern="{{phonePattern}}" class="form-control" ng-model="loginForm.phone"
+               ng-required="true">
 
+        <div role="alert" ng-show="userForm.phone.$error" class="danger">
+            <span class="label label-danger" ng-show="userForm.phone.$error.required">Phone number is required</span>
+        </div>
+        <div role="alert" ng-show="userForm.phone.$dirty" class="danger">
+            <span class="label label-danger" ng-show="userForm.phone.$invalid">Phone number format is wrong</span>
+        </div>
+    </div>
 
+    <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Login</button>
 
+</form>

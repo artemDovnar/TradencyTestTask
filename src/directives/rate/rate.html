@@ -3,16 +3,16 @@
         <thead>
 
         <td class="cellName" style="color: orange">Instrument name</td>
-        <td>Bid</td>
-        <td>Ask</td>
+        <td class="cellBidAskName">Bid</td>
+        <td class="cellBidAskName">Ask</td>
 
         </thead>
         <tbody>
         <tr ng-repeat="rate in rateInfo.getRates() track by $index">
             <td data-title="Name" class="cellName">
                 <span ng-bind="rate.name"></span>
-                <button class="changesBtn" ng-click="changeInstrumentName($index)" type="button">Change</button>
-                <button class="changesBtn" ng-click="rateInfo.removeInstrument($index)">x</button>
+                <button class="btn btn-xs btn-danger" style="margin-left: 5px; border-color: black" ng-click="rateInfo.removeInstrument($index)">x</button>
+                <button class="btn btn-primary btn-xs" style="margin-left: 10px; border-color: black" ng-click="changeInstrumentName($index)">Change</button>
             </td>
             <td data-title="Bid" class="cellBid"
                 ng-class="{'cellGreen': rateInfo.getOld(rate.id).bidValue < rate.bidValue, 'cellRed': rateInfo.getOld(rate.id).bidValue > rate.bidValue, 'cellGray': rateInfo.getOld(rate.id).bidValue == rate.bidValue}"

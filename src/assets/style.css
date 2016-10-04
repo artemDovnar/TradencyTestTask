@@ -10,6 +10,11 @@ h1, h2, h3, h4, h5, h6, a {
 .login {
     max-width: 700px;
 }
+.login-header{
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
 
 table {
     width: 100%;
@@ -19,6 +24,7 @@ table {
 td {
     color: orange;
     padding: 10px;
+    height: 50px;
     border: 1px solid #ccc;
     text-align: left;
     font-weight: bold;
@@ -35,22 +41,32 @@ td {
 
 .cellBid {
     color: white;
+    text-align: center;
+}
+
+.cellBidAskName {
+    color: orange;
+    text-align: center;
 }
 
 .cellAsk {
     color: white;
+    text-align: center;
 }
 
 .cellRed {
     color: red;
+    text-align: center;
 }
 
 .cellGreen {
     color: lime;
+    text-align: center;
 }
 
 .cellGray {
     color: lightslategray;
+    text-align: center;
 }
 
 .login-header {
